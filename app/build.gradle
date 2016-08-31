@@ -111,6 +111,8 @@ configurations {
 configurations.all {
     resolutionStrategy {
         force "com.android.support:support-annotations:${SUPPORT_V7_VERSION}"
+        force "com.android.support:recyclerview-v7:${SUPPORT_V7_VERSION}"
+        force "com.android.support:support-v4:${SUPPORT_V4_VERSION}"
     }
 }
 
@@ -154,7 +156,7 @@ dependencies {
 
     // Espresso 2 Dependencies
     androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
-    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.0'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
     androidTestCompile ('com.android.support.test.espresso:espresso-contrib:2.0') {
         exclude module: 'support-annotations'
     }
