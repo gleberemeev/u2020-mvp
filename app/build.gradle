@@ -44,7 +44,7 @@ android {
         buildConfigField 'long', 'GIT_TIMESTAMP', "${gitTimestamp}"
 
         testApplicationId "${packagename}.tests"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "ru.ltst.u2020mvp.tests.U2020InstrumentationRunner"
     }
 
     signingConfigs {
@@ -155,11 +155,20 @@ dependencies {
     compile 'com.f2prateek.rx.preferences:rx-preferences:1.0.0'
 
     // Espresso 2 Dependencies
-    androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
-    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
-    androidTestCompile ('com.android.support.test.espresso:espresso-contrib:2.0') {
-        exclude module: 'support-annotations'
+    androidTestCompile ('com.android.support.test.espresso:espresso-core:2.2.2') {
+        exclude group: 'com.android.support', module: 'support-annotations'
     }
+    androidTestCompile ('com.android.support.test.espresso:espresso-contrib:2.0') {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestCompile ('com.android.support.test:runner:0.5') {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestCompile ('com.android.support.test:rules:0.5') {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestCompile 'com.squareup.spoon:spoon-client:1.2.0'
+    androidTestApt 'com.google.dagger:dagger-compiler:2.0.1'
 }
 
 // change apk name

@@ -14,6 +14,7 @@ import ru.ltst.u2020mvp.data.api.model.request.Sort;
 import ru.ltst.u2020mvp.data.api.model.response.Image;
 import ru.ltst.u2020mvp.data.api.transforms.GalleryToImageList;
 import ru.ltst.u2020mvp.data.rx.EndObserver;
+import ru.ltst.u2020mvp.util.RxTransformations;
 import rx.Observable;
 import rx.Observer;
 import rx.Subscription;
@@ -36,7 +37,7 @@ public class GalleryDatabase {
         this.galleryService = galleryService;
     }
 
-    // TODO pull underlying logic into a re-usable component for debouncing and caching last value.
+    //TODO pull underlying logic into a re-usable component for debouncing and caching last value.
     public Subscription loadGallery(final Section section, Observer<List<Image>> observer) {
         List<Image> images = galleryCache.get(section);
         if (images != null) {
@@ -75,8 +76,7 @@ public class GalleryDatabase {
                     return !image.is_album; // No albums.
                 })
                 .toList()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(RxTransformations.applySchedulers())
                 .subscribe(galleryRequest);
 
         return subscription;

@@ -1,4 +1,4 @@
-package ru.ltst.u2020mvp.tests;
+package ru.ltst.u2020mvp.tests.ui;
 
 import android.content.Intent;
 import android.support.test.espresso.matcher.ViewMatchers;

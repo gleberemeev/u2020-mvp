@@ -7,9 +7,8 @@ import dagger.Provides;
 import ru.ltst.u2020mvp.data.api.ImageService;
 import ru.ltst.u2020mvp.data.api.model.response.Image;
 import ru.ltst.u2020mvp.data.api.transforms.ImageResponseToImage;
+import ru.ltst.u2020mvp.util.RxTransformations;
 import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 @Module
 public class ImgurImageModule {
@@ -23,7 +22,6 @@ public class ImgurImageModule {
     Observable<Image> provideImageObservable(ImageService imageService) {
         return imageService.image(imageId)
                 .map(new ImageResponseToImage())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .compose(RxTransformations.applySchedulers());
     }
 }
