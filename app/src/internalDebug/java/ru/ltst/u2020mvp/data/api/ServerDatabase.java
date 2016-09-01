@@ -78,6 +78,7 @@ public final class ServerDatabase {
     }
 
     public ImageResponse getImageForId(@NonNull String id) {
+        initializeMockData();
         return new ImageResponse(200, true, imagesById.get(id));
     }
 }

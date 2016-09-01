@@ -2,6 +2,7 @@ package ru.ltst.u2020mvp.tests.ui;
 
 import android.content.Intent;
 import android.support.test.espresso.matcher.ViewMatchers;
+import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.After;
@@ -11,6 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import ru.ltst.u2020mvp.R;
+import ru.ltst.u2020mvp.tests.base.BaseTest;
 import ru.ltst.u2020mvp.tests.util.ActivityRule;
 import ru.ltst.u2020mvp.tests.util.Constants;
 import ru.ltst.u2020mvp.tests.util.ViewActions;
@@ -25,35 +27,23 @@ import static junit.framework.Assert.assertNotNull;
 
 
 @RunWith(AndroidJUnit4.class)
-public class ImgurImageActivityTest {
+public class ImgurImageActivityTest extends BaseTest {
 
     @Rule
-    public final ActivityRule<ImgurImageActivity> main = new ActivityRule<ImgurImageActivity>(ImgurImageActivity.class)
-    {
-        @Override
-        protected Intent getLaunchIntent(String targetPackage, Class activityClass) {
-            Intent intent = super.getLaunchIntent(targetPackage, activityClass);
-            intent.putExtra("ImgurImageActivity.imageId", "0y3uACw");
-            return intent;
-        }
-    };
-
-    private ImgurImageActivity activity;
-
-    @Before
-    public void setUp() {
-        activity = main.get();
-    }
-
-    @After
-    public void tearDown() {
-        activity = null;
-    }
+    public final ActivityTestRule<ImgurImageActivity> main =
+            new ActivityTestRule<ImgurImageActivity>(ImgurImageActivity.class, false, true) {
+                @Override
+                protected Intent getActivityIntent() {
+                    Intent intent = new Intent(getApp(), ImgurImageActivity.class);
+                    intent.putExtra("ImgurImageActivity.imageId", "0y3uACw");
+                    return intent;
+                }
+            };
 
     @Test
     public void verifyImage() {
-        assertNotNull(activity);
         onView(isRoot()).perform(ViewActions.waitAtLeast(Constants.WAIT_DELAY));
-        onView(withId(R.id.imgur_image_view)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
+        onView(withId(R.id.imgur_image_view))
+                .check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
     }
 }
