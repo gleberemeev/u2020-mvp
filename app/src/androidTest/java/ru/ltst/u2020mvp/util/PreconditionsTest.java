@@ -25,13 +25,7 @@ public class PreconditionsTest {
     public void checkNotNull1() throws Exception {
         Integer ref = 1;
         Preconditions.checkNotNull(ref);
-        expectedException.expect(new ThrowableMessageMatcher<NullPointerException>(
-                new CustomTypeSafeMatcher<String>("exception message matcher") {
-            @Override
-            protected boolean matchesSafely(String item) {
-                return item.equals("message");
-            }
-        }));
+        expectedException.expectMessage("message");
         Preconditions.checkNotNull(null, "message");
     }
 
