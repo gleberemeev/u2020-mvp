@@ -2,6 +2,7 @@ package ru.ltst.u2020mvp.ui.gallery.view;
 
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.util.Pair;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -31,7 +32,6 @@ import ru.ltst.u2020mvp.ui.gallery.GalleryComponent;
 import ru.ltst.u2020mvp.ui.misc.AndroidSubscriptions;
 import ru.ltst.u2020mvp.ui.misc.BetterViewAnimator;
 import ru.ltst.u2020mvp.ui.misc.GridInsetDecoration;
-import ru.ltst.u2020mvp.util.DrawableUtils;
 import rx.Observable;
 import rx.Subscriber;
 
@@ -82,7 +82,7 @@ public class GalleryView extends LinearLayout implements BaseView {
         swipeRefreshLayout.setOnRefreshListener(() -> presenter.refresh());
 
         AnimationDrawable ellipsis =
-                (AnimationDrawable) DrawableUtils.getDrawable(getContext(), R.drawable.dancing_ellipsis);
+                (AnimationDrawable) ContextCompat.getDrawable(getContext(), R.drawable.dancing_ellipsis);
         loadingMessageView.setCompoundDrawablesWithIntrinsicBounds(null, null, ellipsis, null);
         ellipsis.start();
 
