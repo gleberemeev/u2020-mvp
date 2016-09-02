@@ -6,6 +6,9 @@ import android.support.test.rule.ActivityTestRule;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
+import java.security.InvalidParameterException;
 
 import javax.inject.Inject;
 
@@ -20,6 +23,8 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static org.hamcrest.CoreMatchers.anyOf;
+import static org.hamcrest.CoreMatchers.instanceOf;
 
 public class ActivityScreenSwitcherTest extends BaseTest {
     private static final String TEST_IMAGE_ID = "0y3uACw";
@@ -29,6 +34,8 @@ public class ActivityScreenSwitcherTest extends BaseTest {
 
     @Rule
     public ActivityTestRule<GalleryActivity> activityTestRule = new ActivityTestRule<>(GalleryActivity.class);
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
 
     @Before
     public void setUp() throws Exception {
@@ -48,6 +55,13 @@ public class ActivityScreenSwitcherTest extends BaseTest {
         activityScreenSwitcher.open(new ImgurImageActivity.Screen(TEST_IMAGE_ID));
         onView(withId(R.id.imgur_image_view))
                 .check(matches(isCompletelyDisplayed()));
+    }
+
+    @Test
+    public void open3() throws Exception {
+        expectedException.expect(anyOf(instanceOf(NullPointerException.class),
+                instanceOf(InvalidParameterException.class)));
+        activityScreenSwitcher.open(null);
     }
 
     @Test
