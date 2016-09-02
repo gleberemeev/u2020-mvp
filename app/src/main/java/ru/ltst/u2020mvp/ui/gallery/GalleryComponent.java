@@ -11,4 +11,5 @@ import ru.ltst.u2020mvp.ui.gallery.view.GalleryView;
 )
 public interface GalleryComponent extends GalleryView.Injector {
     void inject(GalleryActivity activity);
+    GalleryActivity.Presenter presenter();
 }
