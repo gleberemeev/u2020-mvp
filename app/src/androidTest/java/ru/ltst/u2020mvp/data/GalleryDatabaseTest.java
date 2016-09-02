@@ -17,21 +17,17 @@ import javax.inject.Inject;
 import ru.ltst.u2020mvp.R;
 import ru.ltst.u2020mvp.data.api.model.request.Section;
 import ru.ltst.u2020mvp.data.api.model.response.Image;
-import ru.ltst.u2020mvp.tests.base.BaseTest;
-import ru.ltst.u2020mvp.tests.util.Constants;
-import ru.ltst.u2020mvp.tests.util.TimerTestRule;
-import ru.ltst.u2020mvp.ui.gallery.GalleryActivity;
+import ru.ltst.u2020mvp.base.BaseTest;
+import ru.ltst.u2020mvp.util.Constants;
+import ru.ltst.u2020mvp.util.TimerTestRule;
 import ru.ltst.u2020mvp.ui.image.ImgurImageActivity;
-import rx.observers.TestObserver;
 import rx.observers.TestSubscriber;
 import rx.subscriptions.CompositeSubscription;
-import timber.log.Timber;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static org.junit.Assert.*;
 
 @RunWith(AndroidJUnit4.class)
 public class GalleryDatabaseTest extends BaseTest {

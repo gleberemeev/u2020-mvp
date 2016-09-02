@@ -44,7 +44,7 @@ android {
         buildConfigField 'long', 'GIT_TIMESTAMP', "${gitTimestamp}"
 
         testApplicationId "${packagename}.tests"
-        testInstrumentationRunner "ru.ltst.u2020mvp.tests.U2020InstrumentationRunner"
+        testInstrumentationRunner "ru.ltst.u2020mvp.U2020InstrumentationRunner"
     }
 
     signingConfigs {

@@ -1,4 +1,4 @@
-package ru.ltst.u2020mvp.tests.util;
+package ru.ltst.u2020mvp.util;
 
 public final class Constants {
     public static final int WAIT_DELAY = 5000;

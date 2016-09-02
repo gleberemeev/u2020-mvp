@@ -1,13 +1,9 @@
-package ru.ltst.u2020mvp.tests;
+package ru.ltst.u2020mvp;
 
 import dagger.Component;
-import ru.ltst.u2020mvp.ApplicationScope;
-import ru.ltst.u2020mvp.U2020AppModule;
-import ru.ltst.u2020mvp.U2020Component;
 import ru.ltst.u2020mvp.base.navigation.activity.ActivityScreenSwitcherTest;
 import ru.ltst.u2020mvp.data.DebugDataModule;
 import ru.ltst.u2020mvp.data.GalleryDatabaseTest;
-import ru.ltst.u2020mvp.tests.ui.GalleryActivityTest;
 import ru.ltst.u2020mvp.ui.DebugUiModule;
 import ru.ltst.u2020mvp.util.EnumPreferencesTest;
 

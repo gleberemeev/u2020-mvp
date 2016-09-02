@@ -1,4 +1,4 @@
-package ru.ltst.u2020mvp.tests.ui;
+package ru.ltst.u2020mvp.ui.gallery;
 
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
@@ -9,10 +9,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import ru.ltst.u2020mvp.R;
-import ru.ltst.u2020mvp.tests.util.Constants;
-import ru.ltst.u2020mvp.tests.util.TimerTestRule;
-import ru.ltst.u2020mvp.tests.util.ViewActions;
-import ru.ltst.u2020mvp.ui.gallery.GalleryActivity;
+import ru.ltst.u2020mvp.util.Constants;
+import ru.ltst.u2020mvp.util.TimerTestRule;
+import ru.ltst.u2020mvp.util.ViewActions;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;

@@ -13,7 +13,7 @@ import java.security.InvalidParameterException;
 import javax.inject.Inject;
 
 import ru.ltst.u2020mvp.R;
-import ru.ltst.u2020mvp.tests.base.BaseTest;
+import ru.ltst.u2020mvp.base.BaseTest;
 import ru.ltst.u2020mvp.ui.gallery.GalleryActivity;
 import ru.ltst.u2020mvp.ui.image.ImgurImageActivity;
 import ru.ltst.u2020mvp.ui.image.ImgurImageView;
@@ -25,7 +25,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDis
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.CoreMatchers.anyOf;
 import static org.hamcrest.CoreMatchers.instanceOf;
-import static ru.ltst.u2020mvp.tests.util.Constants.TEST_IMAGE_ID;
+import static ru.ltst.u2020mvp.util.Constants.TEST_IMAGE_ID;
 
 public class ActivityScreenSwitcherTest extends BaseTest {
 

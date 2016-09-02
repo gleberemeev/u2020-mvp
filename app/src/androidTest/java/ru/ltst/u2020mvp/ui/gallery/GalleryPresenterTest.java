@@ -9,18 +9,16 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import ru.ltst.u2020mvp.R;
-import ru.ltst.u2020mvp.tests.base.BaseTest;
-import ru.ltst.u2020mvp.tests.util.Constants;
-import ru.ltst.u2020mvp.tests.util.TimerTestRule;
+import ru.ltst.u2020mvp.base.BaseTest;
+import ru.ltst.u2020mvp.util.Constants;
+import ru.ltst.u2020mvp.util.TimerTestRule;
 import ru.ltst.u2020mvp.ui.gallery.view.GalleryView;
 import ru.ltst.u2020mvp.util.SimpleViewAction;
 
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static org.junit.Assert.*;
 import static android.support.test.espresso.Espresso.*;
 import static android.support.test.espresso.matcher.ViewMatchers.*;
-import static org.hamcrest.CoreMatchers.*;
 
 public class GalleryPresenterTest extends BaseTest {
     private GalleryActivity.Presenter presenter;

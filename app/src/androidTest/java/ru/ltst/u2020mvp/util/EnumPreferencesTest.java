@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
 
-import ru.ltst.u2020mvp.tests.base.BaseTest;
+import ru.ltst.u2020mvp.base.BaseTest;
 
 import static org.junit.Assert.*;
 

@@ -1,20 +1,16 @@
 package ru.ltst.u2020mvp.base.mvp;
 
 import android.support.test.espresso.UiController;
-import android.support.test.espresso.assertion.ViewAssertions;
 import android.support.test.rule.ActivityTestRule;
-import android.view.View;
 
 import org.hamcrest.CustomTypeSafeMatcher;
-import org.hamcrest.Description;
-import org.hamcrest.TypeSafeMatcher;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import ru.ltst.u2020mvp.R;
-import ru.ltst.u2020mvp.tests.util.TimerTestRule;
+import ru.ltst.u2020mvp.util.TimerTestRule;
 import ru.ltst.u2020mvp.ui.gallery.GalleryActivity;
 import ru.ltst.u2020mvp.ui.gallery.view.GalleryView;
 import ru.ltst.u2020mvp.util.SimpleViewAction;

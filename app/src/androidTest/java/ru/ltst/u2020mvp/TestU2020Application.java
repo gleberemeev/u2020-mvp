@@ -1,9 +1,7 @@
-package ru.ltst.u2020mvp.tests;
+package ru.ltst.u2020mvp;
 
 
-import ru.ltst.u2020mvp.U2020App;
-import ru.ltst.u2020mvp.U2020AppModule;
-import ru.ltst.u2020mvp.U2020Component;
+import ru.ltst.u2020mvp.tests.DaggerTestU2020Component;
 
 public class TestU2020Application extends U2020App {
     private TestU2020Component component;

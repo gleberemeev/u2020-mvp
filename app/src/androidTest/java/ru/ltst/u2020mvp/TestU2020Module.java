@@ -1,4 +1,4 @@
-package ru.ltst.u2020mvp.tests;
+package ru.ltst.u2020mvp;
 
 import dagger.Module;
 import dagger.Provides;

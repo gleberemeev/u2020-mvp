@@ -1,4 +1,4 @@
-package ru.ltst.u2020mvp.tests.util;
+package ru.ltst.u2020mvp.util;
 
 
 import android.support.annotation.Nullable;

@@ -1,4 +1,4 @@
-package ru.ltst.u2020mvp.tests;
+package ru.ltst.u2020mvp;
 
 import android.app.Application;
 import android.content.Context;
