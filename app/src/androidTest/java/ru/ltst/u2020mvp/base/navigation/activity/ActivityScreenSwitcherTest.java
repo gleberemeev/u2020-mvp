@@ -25,9 +25,9 @@ import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDis
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.CoreMatchers.anyOf;
 import static org.hamcrest.CoreMatchers.instanceOf;
+import static ru.ltst.u2020mvp.tests.util.Constants.TEST_IMAGE_ID;
 
 public class ActivityScreenSwitcherTest extends BaseTest {
-    private static final String TEST_IMAGE_ID = "0y3uACw";
 
     @Inject
     ActivityScreenSwitcher activityScreenSwitcher;
