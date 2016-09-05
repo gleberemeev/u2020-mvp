@@ -12,6 +12,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -57,7 +59,7 @@ public class EnumPreferencesTest {
     public void saveEnumValue() throws Exception {
         when(sharedPreferences.edit())
                 .thenReturn(mock(SharedPreferences.Editor.class));
-        when(sharedPreferences.edit().putString("key", TestEnumeration.ITEM_ONE.name()))
+        when(sharedPreferences.edit().putString(anyString(), eq(TestEnumeration.ITEM_ONE.name())))
                 .thenReturn(mock(SharedPreferences.Editor.class));
         EnumPreferences.saveEnumValue(sharedPreferences, "key", TestEnumeration.ITEM_ONE);
         expectedException.expect(NullPointerException.class);
