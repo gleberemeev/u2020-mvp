@@ -11,12 +11,14 @@ import org.junit.Test;
 import ru.ltst.u2020mvp.R;
 import ru.ltst.u2020mvp.base.BaseTest;
 import ru.ltst.u2020mvp.ui.gallery.view.GalleryView;
+import ru.ltst.u2020mvp.util.RecyclerViewMatcher;
 import ru.ltst.u2020mvp.util.SimpleViewAction;
 import ru.ltst.u2020mvp.util.TestRxJavaSchedulersHook;
 import rx.plugins.RxJavaPlugins;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -39,6 +41,11 @@ public class GalleryPresenterTest extends BaseTest {
     public void onLoad() throws Exception {
         //check content displayed
         onView(withId(R.id.gallery_swipe_refresh))
+                .check(matches(isCompletelyDisplayed()));
+        //check data loaded
+        onView(withId(R.id.gallery_grid))
+                .perform(RecyclerViewActions.scrollToPosition(4));
+        onView(RecyclerViewMatcher.withRecyclerView(R.id.gallery_grid).atPosition(4))
                 .check(matches(isCompletelyDisplayed()));
         //check clicks subscribing
         onView(withId(R.id.gallery_grid))

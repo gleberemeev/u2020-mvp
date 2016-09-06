@@ -40,8 +40,6 @@ public class GalleryViewTest {
                 .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
         viewSubscriber.assertValueCount(1);
         viewSubscriber.assertNoErrors();
-        onView(withId(R.id.imgur_image_view))
-                .check(matches(isCompletelyDisplayed()));
     }
 
     @Test

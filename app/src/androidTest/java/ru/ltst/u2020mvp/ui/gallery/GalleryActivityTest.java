@@ -1,5 +1,6 @@
 package ru.ltst.u2020mvp.ui.gallery;
 
+import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -15,7 +16,9 @@ import ru.ltst.u2020mvp.util.ViewActions;
 import rx.plugins.RxJavaPlugins;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
 import static android.support.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -48,5 +51,13 @@ public class GalleryActivityTest {
         // "2. Scrolled to bottom";
         // "3. Scrolled to top";
         onView(withId(R.id.gallery_grid)).perform(ViewActions.swipeBottom());
+    }
+
+    @Test
+    public void testClick() {
+        onView(withId(R.id.gallery_grid))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+        onView(withId(R.id.imgur_image_view))
+                .check(matches(isCompletelyDisplayed()));
     }
 }
