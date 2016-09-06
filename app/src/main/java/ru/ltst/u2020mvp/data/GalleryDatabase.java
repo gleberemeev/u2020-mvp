@@ -18,8 +18,6 @@ import ru.ltst.u2020mvp.util.RxTransformations;
 import rx.Observable;
 import rx.Observer;
 import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 import rx.subjects.PublishSubject;
 
 /**
@@ -81,6 +79,4 @@ public class GalleryDatabase {
 
         return subscription;
     }
-
-
 }

@@ -1,6 +1,6 @@
 package ru.ltst.u2020mvp.data.api.model.response;
 
-public final class Image {
+public final class  Image {
     public final String id;
 
     public final String link;
