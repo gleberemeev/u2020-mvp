@@ -1,14 +1,13 @@
 package ru.ltst.u2020mvp.data;
 
-import android.support.test.runner.AndroidJUnit4;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.threeten.bp.Instant;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-@RunWith(AndroidJUnit4.class)
+@RunWith(MockitoJUnitRunner.class)
 public class InstantAdapterTest {
     @Test
     public void toJson() throws Exception {
