@@ -169,6 +169,10 @@ dependencies {
     androidTestCompile libraries.testRunner
     androidTestCompile libraries.testRules
     androidTestCompile libraries.espressoCore
+    androidTestApt libraries.daggerCompiler
+
+    testCompile libraries.mockito
+    testCompile libraries.junit
 }
 
 // change apk name

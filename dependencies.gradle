@@ -108,5 +108,6 @@ ext.libraries = [
         espressoCore            : "com.android.support.test.espresso:espresso-core:$versions.espresso",
         junit                   : "junit:junit:$versions.junit",
         testRunner              : "com.android.support.test:runner:$versions.testRunner",
-        testRules               : "com.android.support.test:rules:$versions.testRules"
+        testRules               : "com.android.support.test:rules:$versions.testRules",
+        mockito                 : "org.mockito:mockito-core:$versions.mockito"
 ]

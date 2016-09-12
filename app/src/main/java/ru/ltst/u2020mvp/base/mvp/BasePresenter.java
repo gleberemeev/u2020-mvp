@@ -54,11 +54,6 @@ public abstract class BasePresenter<V extends BaseView> {
         return view.get();
     }
 
-    protected final boolean hasView(){
-        return view != null;
-    }
-
-
     protected void onLoad(OnActivityResult onActivityResult) {
         if (onActivityResult != null) {
             onResult(onActivityResult);
