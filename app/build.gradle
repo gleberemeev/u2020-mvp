@@ -12,9 +12,9 @@ buildscript {
 
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
-apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.ofg.uptodate'
 apply from: '../dependencies.gradle'
+apply plugin: 'me.tatarka.retrolambda'
 
 repositories {
     mavenCentral()
@@ -164,7 +164,6 @@ dependencies {
 
     //-----tests-----
     // Espresso 2 Dependencies
-    androidTestCompile libraries.testingSupportLib
     androidTestCompile libraries.junit
     androidTestCompile libraries.testRunner
     androidTestCompile libraries.testRules
