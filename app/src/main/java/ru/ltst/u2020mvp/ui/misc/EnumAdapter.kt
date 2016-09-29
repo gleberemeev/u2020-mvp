@@ -5,16 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import kotlin.reflect.KClass
 
-open class EnumAdapter<T : Enum<T>> @JvmOverloads constructor(context: Context, enumType: KClass<T>,
+open class EnumAdapter<T : Enum<T>> @JvmOverloads constructor(context: Context, enumType: Class<T>,
                                                               private val showNull: Boolean = false)
         : BindableAdapter<T>(context) {
     private val enumConstants: Array<T>
     private val nullOffset: Int
 
     init {
-        this.enumConstants = enumType.java.enumConstants
+        this.enumConstants = enumType.enumConstants
         this.nullOffset = if (showNull) 1 else 0
     }
 

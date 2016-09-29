@@ -41,6 +41,7 @@ import javax.inject.Named;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import kotlin.reflect.KClass;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import retrofit2.mock.NetworkBehavior;
@@ -257,7 +258,7 @@ public final class DebugView extends FrameLayout {
     }
 
     private void setupNetworkSection() {
-        final ApiEndpoints currentEndpoint = ApiEndpoints.from(networkEndpoint.get());
+        final ApiEndpoints currentEndpoint = ApiEndpoints.Companion.from(networkEndpoint.get());
         final EnumAdapter<ApiEndpoints> endpointAdapter =
                 new EnumAdapter<>(getContext(), ApiEndpoints.class);
         endpointView.setAdapter(endpointAdapter);
@@ -270,7 +271,7 @@ public final class DebugView extends FrameLayout {
                         Timber.d("Custom network endpoint selected. Prompting for URL.");
                         showCustomEndpointDialog(currentEndpoint.ordinal(), "http://");
                     } else {
-                        setEndpointAndRelaunch(selected.url);
+                        setEndpointAndRelaunch(selected.getUrl());
                     }
                 });
 

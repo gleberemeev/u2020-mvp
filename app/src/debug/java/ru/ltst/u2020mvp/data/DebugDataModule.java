@@ -60,7 +60,7 @@ public final class DebugDataModule {
     @ApplicationScope
     @ApiEndpoint
     Preference<String> provideEndpointPreference(RxSharedPreferences prefs) {
-        return prefs.getString("debug_endpoint", ApiEndpoints.MOCK_MODE.url);
+        return prefs.getString("debug_endpoint", ApiEndpoints.MOCK_MODE.getUrl());
     }
 
     @Provides
@@ -69,7 +69,7 @@ public final class DebugDataModule {
     boolean provideIsMockMode(@ApiEndpoint Preference<String> endpoint,
                               @IsInstrumentationTest boolean isInstrumentationTest) {
         // Running in an instrumentation forces mock mode.
-        return isInstrumentationTest || ApiEndpoints.isMockMode(endpoint.get());
+        return isInstrumentationTest || ApiEndpoints.Companion.isMockMode(endpoint.get());
     }
 
     @Provides

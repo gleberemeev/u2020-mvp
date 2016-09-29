@@ -10,7 +10,7 @@ import ru.ltst.u2020mvp.ui.misc.EnumAdapter
 
 
 class TrendingTimespanAdapter(context: Context) :
-        EnumAdapter<TrendingTimespan>(context, TrendingTimespan::class) {
+        EnumAdapter<TrendingTimespan>(context, TrendingTimespan::class.java) {
 
     override fun newView(inflater: LayoutInflater, position: Int, container: ViewGroup): View {
         return inflater.inflate(R.layout.trending_timespan_view, container, false)
