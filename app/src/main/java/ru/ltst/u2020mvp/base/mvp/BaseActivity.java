@@ -85,6 +85,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onStart();
         mNetworkReceiver = new NetworkReceiver(isConnected -> {
             presenter().onNetworkConnectionStateChanged(isConnected);
+            return null;
         });
         mNetworkReceiver.register(this);
     }
