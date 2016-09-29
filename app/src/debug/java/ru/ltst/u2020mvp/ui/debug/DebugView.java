@@ -484,8 +484,8 @@ public final class DebugView extends FrameLayout {
     private void setupDeviceSection() {
         DisplayMetrics displayMetrics = getContext().getResources().getDisplayMetrics();
         String densityBucket = getDensityString(displayMetrics);
-        deviceMakeView.setText(Strings.truncateAt(Build.MANUFACTURER, 20));
-        deviceModelView.setText(Strings.truncateAt(Build.MODEL, 20));
+        deviceMakeView.setText(Strings.INSTANCE.truncateAt(Build.MANUFACTURER, 20));
+        deviceModelView.setText(Strings.INSTANCE.truncateAt(Build.MODEL, 20));
         deviceResolutionView.setText(displayMetrics.heightPixels + "x" + displayMetrics.widthPixels);
         deviceDensityView.setText(displayMetrics.densityDpi + "dpi (" + densityBucket + ")");
         deviceReleaseView.setText(Build.VERSION.RELEASE);
@@ -631,7 +631,7 @@ public final class DebugView extends FrameLayout {
                 })
                 .setPositiveButton("Use", (dialog, i) -> {
                     String theUrl = url.getText().toString();
-                    if (!Strings.isBlank(theUrl)) {
+                    if (!Strings.INSTANCE.isBlank(theUrl)) {
                         setEndpointAndRelaunch(theUrl);
                     } else {
                         endpointView.setSelection(originalSelection);

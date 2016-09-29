@@ -80,16 +80,16 @@ public class Registry {
         if (activity instanceof BaseActivity) {
             final String uniqueKey = ((BaseActivity) activity).uniqueKey();
             if (!uniqueKey.isEmpty()) {
-                builder.append(Strings.DOT).append(uniqueKey);
+                builder.append(Strings.INSTANCE.getDOT()).append(uniqueKey);
             }
         } else {
             final String action = activity.getIntent().getAction();
             if (action != null) {
-                builder.append(DOT).append(action);
+                builder.append(INSTANCE.getDOT()).append(action);
             }
             final Uri data = activity.getIntent().getData();
             if (data != null) {
-                builder.append(DOT).append(data.toString());
+                builder.append(INSTANCE.getDOT()).append(data.toString());
             }
             final Bundle extras = activity.getIntent().getExtras();
             if (extras != null) {
@@ -103,8 +103,8 @@ public class Registry {
                         valueString = value.toString();
                     }
 
-                    builder.append(DOT);
-                    builder.append(key).append(COLON);
+                    builder.append(INSTANCE.getDOT());
+                    builder.append(key).append(INSTANCE.getCOLON());
                     builder.append(valueString);
                 }
             }

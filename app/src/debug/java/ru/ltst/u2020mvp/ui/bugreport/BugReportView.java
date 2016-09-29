@@ -40,14 +40,14 @@ public final class BugReportView extends LinearLayout {
 
         titleView.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) {
-                titleView.setError(Strings.isBlank(titleView.getText()) ? "Cannot be empty." : null);
+                titleView.setError(Strings.INSTANCE.isBlank(titleView.getText()) ? "Cannot be empty." : null);
             }
         });
         titleView.addTextChangedListener(new EmptyTextWatcher() {
             @Override
             public void afterTextChanged(Editable s) {
                 if (listener != null) {
-                    listener.onStateChanged(!Strings.isBlank(s));
+                    listener.onStateChanged(!Strings.INSTANCE.isBlank(s));
                 }
             }
         });

@@ -82,7 +82,7 @@ public final class BugReportLens extends Lens implements BugReportDialog.ReportL
         intent.putExtra(Intent.EXTRA_SUBJECT, report.title);
 
         StringBuilder body = new StringBuilder();
-        if (!Strings.isBlank(report.description)) {
+        if (!Strings.INSTANCE.isBlank(report.description)) {
             body.append("{panel:title=Description}\n").append(report.description).append("\n{panel}\n\n");
         }
 

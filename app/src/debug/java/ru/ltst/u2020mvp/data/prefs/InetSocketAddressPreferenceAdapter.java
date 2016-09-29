@@ -46,7 +46,7 @@ public class InetSocketAddressPreferenceAdapter implements Preference.Adapter<In
     public static
     @Nullable
     InetSocketAddress parse(@Nullable String value) {
-        if (Strings.isBlank(value)) {
+        if (Strings.INSTANCE.isBlank(value)) {
             return null;
         }
         String[] parts = value.split(":", 2);
