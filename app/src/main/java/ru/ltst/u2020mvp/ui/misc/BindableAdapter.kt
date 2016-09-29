@@ -16,7 +16,7 @@ abstract class BindableAdapter<T>(val context: Context) : BaseAdapter() {
         this.inflater = LayoutInflater.from(context)
     }
 
-    abstract override fun getItem(position: Int): T
+    abstract override fun getItem(position: Int): T?
 
     override fun getView(position: Int, view: View?, container: ViewGroup): View {
         var view = view
@@ -38,7 +38,7 @@ abstract class BindableAdapter<T>(val context: Context) : BaseAdapter() {
     /**
      * Bind the data for the specified `position` to the view.
      */
-    abstract fun bindView(item: T, position: Int, view: View)
+    abstract fun bindView(item: T?, position: Int, view: View)
 
     override fun getDropDownView(position: Int, view: View?, container: ViewGroup): View {
         var view = view
@@ -62,7 +62,7 @@ abstract class BindableAdapter<T>(val context: Context) : BaseAdapter() {
     /**
      * Bind the data for the specified `position` to the drop-down view.
      */
-    fun bindDropDownView(item: T, position: Int, view: View) {
+    fun bindDropDownView(item: T?, position: Int, view: View) {
         bindView(item, position, view)
     }
 }

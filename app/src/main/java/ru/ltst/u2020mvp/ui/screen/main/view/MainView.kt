@@ -14,7 +14,6 @@ import android.util.AttributeSet
 import kotlinx.android.synthetic.main.main_activity.view.*
 import ru.ltst.u2020mvp.R
 import ru.ltst.u2020mvp.ui.misc.*
-import ru.ltst.u2020mvp.ui.misc.DividerItemDecoration.VERTICAL_LIST
 import ru.ltst.u2020mvp.ui.screen.trending.TrendingAdapter
 import ru.ltst.u2020mvp.ui.screen.trending.TrendingTimespan
 
@@ -39,7 +38,7 @@ class MainView(context: Context, attrs: AttributeSet) : DrawerLayout(context, at
         trending_swipe_refresh.setColorSchemeResources(R.color.accent)
 
         trending_list.layoutManager = LinearLayoutManager(context)
-        trending_list.addItemDecoration(DividerItemDecoration(context, VERTICAL_LIST,
+        trending_list.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL_LIST,
                 dividerPaddingStart, safeIsRtl()))
     }
 

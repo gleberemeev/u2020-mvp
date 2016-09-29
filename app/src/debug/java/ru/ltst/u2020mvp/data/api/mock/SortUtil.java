@@ -60,8 +60,8 @@ final class SortUtil {
     }
 
     @Override public int compareAsc(@NonNull Repository lhs, @NonNull Repository rhs) {
-      long left = lhs.watchers;
-      long right = rhs.watchers;
+      long left = lhs.getWatchers();
+      long right = rhs.getWatchers();
       return left < right ? -1 : (left == right ? 0 : 1);
     }
   }
@@ -72,8 +72,8 @@ final class SortUtil {
     }
 
     @Override public int compareAsc(@NonNull Repository lhs, @NonNull Repository rhs) {
-      long left = lhs.forks;
-      long right = rhs.forks;
+      long left = lhs.getForks();
+      long right = rhs.getForks();
       return left < right ? -1 : (left == right ? 0 : 1);
     }
   }
@@ -84,7 +84,7 @@ final class SortUtil {
     }
 
     @Override public int compareAsc(@NonNull Repository lhs, @NonNull Repository rhs) {
-      return lhs.updated_at.compareTo(rhs.updated_at);
+      return lhs.getUpdated_at().compareTo(rhs.getUpdated_at());
     }
   }
 

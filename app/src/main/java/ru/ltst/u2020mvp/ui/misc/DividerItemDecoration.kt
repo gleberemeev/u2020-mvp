@@ -108,7 +108,7 @@ class DividerItemDecoration(context: Context,
     companion object {
         private val ATTRS = intArrayOf(android.R.attr.listDivider)
 
-        val HORIZONTAL_LIST = LinearLayoutManager.HORIZONTAL
-        val VERTICAL_LIST = LinearLayoutManager.VERTICAL
+        @JvmStatic val HORIZONTAL_LIST = LinearLayoutManager.HORIZONTAL
+        @JvmStatic val VERTICAL_LIST = LinearLayoutManager.VERTICAL
     }
 }

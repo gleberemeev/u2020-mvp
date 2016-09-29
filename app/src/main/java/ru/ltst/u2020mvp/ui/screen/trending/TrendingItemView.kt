@@ -45,7 +45,7 @@ class TrendingItemView(context: Context, attrs: AttributeSet) : RelativeLayout(c
         if (!repository.description.isNullOrEmpty()) {
             description.pushSpan(ForegroundColorSpan(descriptionColor))
             description.append(" — ")
-            description.append(repository.description)
+            description.append(repository.description!!)
             description.popSpan()
         }
 

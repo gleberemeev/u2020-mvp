@@ -12,9 +12,6 @@ import butterknife.ButterKnife;
 import ru.ltst.u2020mvp.util.Strings;
 import timber.log.Timber;
 
-import static ru.ltst.u2020mvp.util.Strings.COLON;
-import static ru.ltst.u2020mvp.util.Strings.DOT;
-
 public class Registry {
     private static final HashMap<String, Entry> registers = new HashMap<>();
     public static final ActivityHierarchyServer.Empty SERVER = new ActivityHierarchyServer.Empty() {
@@ -85,11 +82,11 @@ public class Registry {
         } else {
             final String action = activity.getIntent().getAction();
             if (action != null) {
-                builder.append(INSTANCE.getDOT()).append(action);
+                builder.append(Strings.INSTANCE.getDOT()).append(action);
             }
             final Uri data = activity.getIntent().getData();
             if (data != null) {
-                builder.append(INSTANCE.getDOT()).append(data.toString());
+                builder.append(Strings.INSTANCE.getDOT()).append(data.toString());
             }
             final Bundle extras = activity.getIntent().getExtras();
             if (extras != null) {
@@ -103,8 +100,8 @@ public class Registry {
                         valueString = value.toString();
                     }
 
-                    builder.append(INSTANCE.getDOT());
-                    builder.append(key).append(INSTANCE.getCOLON());
+                    builder.append(Strings.INSTANCE.getDOT());
+                    builder.append(key).append(Strings.INSTANCE.getCOLON());
                     builder.append(valueString);
                 }
             }
