@@ -34,23 +34,23 @@ public class EnumPreferencesTest {
 
 
         TestEnumeration defaultVal = TestEnumeration.ITEM_ONE;
-        assertEquals(TestEnumeration.ITEM_TWO, EnumPreferences.getEnumValue(sharedPreferences,
+        assertEquals(TestEnumeration.ITEM_TWO, EnumPreferences.INSTANCE.getEnumValue(sharedPreferences,
                 TestEnumeration.class, "key1", defaultVal));
-        assertEquals(TestEnumeration.ITEM_THREE, EnumPreferences.getEnumValue(sharedPreferences,
+        assertEquals(TestEnumeration.ITEM_THREE, EnumPreferences.INSTANCE.getEnumValue(sharedPreferences,
                 TestEnumeration.class, "key2", defaultVal));
         when(sharedPreferences.getString("key3", defaultVal.name()))
                 .thenReturn(defaultVal.name());
-        assertEquals(defaultVal, EnumPreferences.getEnumValue(sharedPreferences,
+        assertEquals(defaultVal, EnumPreferences.INSTANCE.getEnumValue(sharedPreferences,
                 TestEnumeration.class, "key3", defaultVal));
 
         expectedException.expect(NullPointerException.class);
-        TestEnumeration enumeration = EnumPreferences.getEnumValue(sharedPreferences,
+        TestEnumeration enumeration = EnumPreferences.INSTANCE.getEnumValue(sharedPreferences,
                 null, "key2", defaultVal);
-        enumeration = EnumPreferences.getEnumValue(null, null, "key2", defaultVal);
+        enumeration = EnumPreferences.INSTANCE.getEnumValue(null, null, "key2", defaultVal);
 
         when(sharedPreferences.getString("key4", null))
                 .thenReturn(null);
-        assertNull(EnumPreferences.getEnumValue(sharedPreferences, TestEnumeration.class,
+        assertNull(EnumPreferences.INSTANCE.getEnumValue(sharedPreferences, TestEnumeration.class,
                 "key4", null));
     }
 
@@ -61,11 +61,11 @@ public class EnumPreferencesTest {
                 .thenReturn(mock(SharedPreferences.Editor.class));
         when(sharedPreferences.edit().putString(anyString(), eq(TestEnumeration.ITEM_ONE.name())))
                 .thenReturn(mock(SharedPreferences.Editor.class));
-        EnumPreferences.saveEnumValue(sharedPreferences, "key", TestEnumeration.ITEM_ONE);
+        EnumPreferences.INSTANCE.saveEnumValue(sharedPreferences, "key", TestEnumeration.ITEM_ONE);
         expectedException.expect(NullPointerException.class);
-        EnumPreferences.saveEnumValue(null, "key", TestEnumeration.ITEM_ONE);
-        EnumPreferences.saveEnumValue(sharedPreferences, null, TestEnumeration.ITEM_ONE);
-        EnumPreferences.saveEnumValue(sharedPreferences, "key", null);
+        EnumPreferences.INSTANCE.saveEnumValue(null, "key", TestEnumeration.ITEM_ONE);
+        EnumPreferences.INSTANCE.saveEnumValue(sharedPreferences, null, TestEnumeration.ITEM_ONE);
+        EnumPreferences.INSTANCE.saveEnumValue(sharedPreferences, "key", null);
     }
 
     private enum TestEnumeration {

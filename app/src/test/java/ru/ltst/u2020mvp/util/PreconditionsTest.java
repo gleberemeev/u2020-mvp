@@ -15,17 +15,17 @@ public class PreconditionsTest {
     @Test
     public void checkNotNull() throws Exception {
         Integer ref = 1;
-        Preconditions.checkNotNull(ref);
+        Preconditions.INSTANCE.checkNotNull(ref);
         expectedException.expect(NullPointerException.class);
-        Preconditions.checkNotNull(null);
+        Preconditions.INSTANCE.checkNotNull(null);
     }
 
     @Test
     public void checkNotNull1() throws Exception {
         Integer ref = 1;
-        Preconditions.checkNotNull(ref);
+        Preconditions.INSTANCE.checkNotNull(ref);
         expectedException.expectMessage("message");
-        Preconditions.checkNotNull(null, "message");
+        Preconditions.INSTANCE.checkNotNull(null, "message");
     }
 
 }

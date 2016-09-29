@@ -58,7 +58,7 @@ public final class ExternalIntentActivity extends Activity implements Toolbar.On
   @Override public boolean onMenuItemClick(MenuItem menuItem) {
     switch (menuItem.getItemId()) {
       case R.id.debug_launch:
-        if (Intents.maybeStartActivity(this, baseIntent)) {
+        if (Intents.Companion.maybeStartActivity(this, baseIntent)) {
           finish();
         }
         return true;

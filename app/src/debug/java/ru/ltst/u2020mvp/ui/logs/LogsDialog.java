@@ -81,7 +81,7 @@ public final class LogsDialog extends AlertDialog {
                     Intent sendIntent = new Intent(Intent.ACTION_SEND);
                     sendIntent.setType("text/plain");
                     sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
-                    Intents.maybeStartChooser(getContext(), sendIntent);
+                    Intents.Companion.maybeStartChooser(getContext(), sendIntent);
                 }
             });
     }

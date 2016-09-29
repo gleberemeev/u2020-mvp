@@ -43,7 +43,7 @@ public final class MockGithubService implements GithubService {
      * uses {@code defaultValue} if a response was not found.
      */
     private <T extends Enum<T>> void loadResponse(Class<T> responseClass, T defaultValue) {
-        responses.put(responseClass, EnumPreferences.getEnumValue(preferences, responseClass, //
+        responses.put(responseClass, EnumPreferences.INSTANCE.getEnumValue(preferences, responseClass, //
                 responseClass.getCanonicalName(), defaultValue));
     }
 
@@ -53,7 +53,7 @@ public final class MockGithubService implements GithubService {
 
     public <T extends Enum<T>> void setResponse(Class<T> responseClass, T value) {
         responses.put(responseClass, value);
-        EnumPreferences.saveEnumValue(preferences, responseClass.getCanonicalName(), value);
+        EnumPreferences.INSTANCE.saveEnumValue(preferences, responseClass.getCanonicalName(), value);
     }
 
     @Override

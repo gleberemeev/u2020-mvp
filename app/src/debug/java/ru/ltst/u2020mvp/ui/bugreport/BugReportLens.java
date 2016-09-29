@@ -122,7 +122,7 @@ public final class BugReportLens extends Lens implements BugReportDialog.ReportL
             intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, attachments);
         }
 
-        Intents.maybeStartActivity(context, intent);
+        Intents.Companion.maybeStartActivity(context, intent);
     }
 
     private static String getDensityString(DisplayMetrics displayMetrics) {
