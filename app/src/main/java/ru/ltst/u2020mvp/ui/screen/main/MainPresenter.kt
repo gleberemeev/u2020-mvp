@@ -44,7 +44,6 @@ constructor(private val githubService: GithubService,
             private val activityScreenSwitcher: ActivityScreenSwitcher)
     : BasePresenter<MainViewImpl>(),
         SwipeRefreshLayout.OnRefreshListener,
-        TrendingAdapter.RepositoryClickListener,
         NavigationView.OnNavigationItemSelectedListener {
 
     private val timespanSubject: PublishSubject<TrendingTimespan>
@@ -61,14 +60,19 @@ constructor(private val githubService: GithubService,
         timespanSubject = PublishSubject.create<TrendingTimespan>()
         timespanAdapter = TrendingTimespanAdapter(
                 ContextThemeWrapper(application, R.style.Theme_U2020_TrendingTimespan))
-        trendingAdapter = TrendingAdapter(picasso, this)
+        trendingAdapter = TrendingAdapter(picasso, { onRepositoryClick(it) })
     }
 
     override fun onLoad(onActivityResult: BasePresenter.OnActivityResult) {
         mainView = view
-        val result = timespanSubject.flatMap(trendingSearch).observeOn(AndroidSchedulers.mainThread()).share()
-        subscriptions.add(result.filter(Results.isSuccessful()).map(SearchResultToRepositoryList.instance()).subscribe(trendingAdapter))
-        subscriptions.add(result.filter(Funcs.not(Results.isSuccessful())).subscribe(trendingError))
+        val result = timespanSubject.flatMap(trendingSearch)
+                .observeOn(AndroidSchedulers.mainThread())
+                .share()
+        subscriptions.add(result.filter(Results.isSuccessful())
+                .map(SearchResultToRepositoryList.instance())
+                .subscribe(trendingAdapter))
+        subscriptions.add(result.filter(Funcs.not(Results.isSuccessful()))
+                .subscribe(trendingError))
 
         // Load the default selection.
         mainView!!.bindData(trendingAdapter,
@@ -104,14 +108,14 @@ constructor(private val githubService: GithubService,
         timespanSubject.onNext(timespanAdapter.getItem(position))
     }
 
-    override fun onRepositoryClick(repository: Repository) {
+    fun onRepositoryClick(repository: Repository) {
         Intents.maybeStartActivity(application, intentFactory.createUrlIntent(repository.html_url))
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_search ->
-                //                activityScreenSwitcher.open(new YourActivity.Screen(activityParams));
+//                                activityScreenSwitcher.open(new YourActivity.Screen(activityParams));
                 Toast.makeText(application, "Search!", LENGTH_SHORT).show()
             R.id.nav_trending -> Toast.makeText(application, "Trending!", LENGTH_SHORT).show()
             else -> throw IllegalStateException("Unknown navigation item: " + item.title)
