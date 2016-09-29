@@ -43,14 +43,14 @@ public final class DebugDataModule {
     @ApplicationScope
     IntentFactory provideIntentFactory(@IsMockMode boolean isMockMode,
                                        @CaptureIntents Preference<Boolean> captureIntents) {
-        return new DebugIntentFactory(IntentFactory.REAL, isMockMode, captureIntents);
+        return new DebugIntentFactory(IntentFactory.Companion.getREAL(), isMockMode, captureIntents);
     }
 
     @Provides
     @ApplicationScope
     OkHttpClient provideOkHttpClient(Application app,
                                      Preference<InetSocketAddress> networkProxyAddress) {
-        return DataModule.createOkHttpClient(app)
+        return DataModule.Companion.createOkHttpClient(app)
                 .sslSocketFactory(createBadSslSocketFactory())
                 .proxy(InetSocketAddressPreferenceAdapter.createProxy(networkProxyAddress.get()))
                 .build();
