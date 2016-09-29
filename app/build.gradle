@@ -4,7 +4,6 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath gradlePlugins.apt
         classpath gradlePlugins.retrolambda
         classpath gradlePlugins.uptodate
     }
@@ -13,7 +12,6 @@ buildscript {
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'com.ofg.uptodate'
 apply from: '../dependencies.gradle'
 apply plugin: 'me.tatarka.retrolambda'
@@ -116,6 +114,10 @@ configurations.all {
     }
 }
 
+kapt {
+    generateStubs = true
+}
+
 dependencies {
     //support
     compile libraries.supportV4
@@ -126,7 +128,7 @@ dependencies {
     compile libraries.design
     //dagger
     compile libraries.dagger
-    apt libraries.daggerCompiler
+    kapt libraries.daggerCompiler
     provided libraries.javax
     //okhttp
     compile libraries.okhttp
@@ -140,7 +142,7 @@ dependencies {
     compile libraries.retrofitRxJava
     //butterknife
     compile libraries.butterknife
-    apt libraries.butterknifeCompiler
+    kapt libraries.butterknifeCompiler
     //timber
     compile libraries.timber
     //byteunits
@@ -172,7 +174,7 @@ dependencies {
     androidTestCompile libraries.testRunner
     androidTestCompile libraries.testRules
     androidTestCompile libraries.espressoCore
-    androidTestApt libraries.daggerCompiler
+    kaptAndroidTest libraries.daggerCompiler
 
     testCompile libraries.mockito
     testCompile libraries.junit

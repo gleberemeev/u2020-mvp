@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import ru.ltst.u2020mvp.ui.screen.main.MainActivity;
+import ru.ltst.u2020mvp.ui.screen.main.MainComponent;
 import ru.ltst.u2020mvp.ui.screen.main.MainScope;
 
 @RunWith(AndroidJUnit4.class)
@@ -22,6 +23,6 @@ public class ComponentFinderTest {
     public void findActivityComponentTest() {
         Context context = activityTestRule.getActivity();
         ViewMatchers.assertThat(ComponentFinder.findActivityComponent(context),
-                CoreMatchers.instanceOf(MainScope.MainComponent.class));
+                CoreMatchers.instanceOf(MainComponent.class));
     }
 }
