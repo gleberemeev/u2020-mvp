@@ -11,6 +11,8 @@ buildscript {
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'com.ofg.uptodate'
 apply from: '../dependencies.gradle'
@@ -151,6 +153,8 @@ dependencies {
     compile libraries.threetenabp
     //rx-preferences
     compile libraries.rxpreferences
+    //kotlin
+    compile libraries.kotlin
 
     //--debug--
     debugCompile libraries.madge
