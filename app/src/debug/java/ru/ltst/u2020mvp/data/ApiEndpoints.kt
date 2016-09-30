@@ -1,11 +1,12 @@
 package ru.ltst.u2020mvp.data
 
 import ru.ltst.u2020mvp.data.api.ApiModule
+import ru.ltst.u2020mvp.util.Strings
 
-enum class ApiEndpoints private constructor(val displayedName: String, val url: String?) {
+enum class ApiEndpoints constructor(val displayedName: String, val url: String) {
     PRODUCTION("Production", ApiModule.PRODUCTION_API_URL.toString()),
     MOCK_MODE("Mock Mode", "http://localhost/mock/"),
-    CUSTOM("Custom", null);
+    CUSTOM("Custom", Strings.EMPTY);
 
     override fun toString(): String {
         return displayedName
@@ -13,9 +14,11 @@ enum class ApiEndpoints private constructor(val displayedName: String, val url: 
 
     companion object {
 
-        fun from(endpoint: String): ApiEndpoints {
+        fun from(endpoint: String?): ApiEndpoints {
+            if (endpoint == null)
+                return CUSTOM
             for (value in values()) {
-                if (value.url != null && value.url == endpoint) {
+                if (value.url == endpoint) {
                     return value
                 }
             }
