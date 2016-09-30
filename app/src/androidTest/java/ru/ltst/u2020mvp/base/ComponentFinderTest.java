@@ -22,7 +22,7 @@ public class ComponentFinderTest {
     @Test
     public void findActivityComponentTest() {
         Context context = activityTestRule.getActivity();
-        ViewMatchers.assertThat(ComponentFinder.findActivityComponent(context),
+        ViewMatchers.assertThat(ComponentFinder.INSTANCE.findActivityComponent(context),
                 CoreMatchers.instanceOf(MainComponent.class));
     }
 }

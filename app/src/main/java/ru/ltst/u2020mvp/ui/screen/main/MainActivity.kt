@@ -17,6 +17,8 @@ import ru.ltst.u2020mvp.data.api.oauth.OauthService
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(), HasComponent<MainComponent> {
+    override val component: MainComponent
+        get() = mainComponent
     @Inject
     lateinit var presenter: MainPresenter
     @Inject
@@ -75,9 +77,5 @@ class MainActivity : BaseActivity(), HasComponent<MainComponent> {
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private fun setStatusBarColor(window: Window) {
         window.statusBarColor = Color.TRANSPARENT
-    }
-
-    override fun getComponent(): MainComponent {
-        return mainComponent
     }
 }
