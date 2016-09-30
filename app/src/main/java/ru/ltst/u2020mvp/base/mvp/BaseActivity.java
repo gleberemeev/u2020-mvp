@@ -48,7 +48,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (viewContainer == null) {
             throw new IllegalStateException("No injection happened. Add component.inject(this) in onCreateComponent() implementation.");
         }
-        Registry.add(this, viewId(), presenter());
+        Registry.INSTANCE.add(this, viewId(), presenter());
         final LayoutInflater layoutInflater = getLayoutInflater();
         ViewGroup container = viewContainer.forActivity(this);
         layoutInflater.inflate(layoutId(), container);

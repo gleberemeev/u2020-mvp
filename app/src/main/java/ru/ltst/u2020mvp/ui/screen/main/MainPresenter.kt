@@ -63,8 +63,8 @@ constructor(private val githubService: GithubService,
         trendingAdapter = TrendingAdapter(picasso, { onRepositoryClick(it) })
     }
 
-    override fun onLoad(onActivityResult: BasePresenter.OnActivityResult) {
-        mainView = view
+    override fun onLoad(onActivityResult: BasePresenter.OnActivityResult?) {
+        mainView = getView()
         val result = timespanSubject.flatMap(trendingSearch)
                 .observeOn(AndroidSchedulers.mainThread())
                 .share()

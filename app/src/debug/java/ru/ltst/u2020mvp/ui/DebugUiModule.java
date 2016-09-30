@@ -23,7 +23,7 @@ public class DebugUiModule {
     ActivityHierarchyServer provideActivityHierarchyServer(@ActivityScreenSwitcherServer ActivityHierarchyServer server) {
         final ActivityHierarchyServer.Proxy proxy = new ActivityHierarchyServer.Proxy();
         proxy.addServer(server);
-        proxy.addServer(Registry.SERVER);
+        proxy.addServer(Registry.INSTANCE.getSERVER());
         proxy.addServer(new SocketActivityHierarchyServer());
         return proxy;
     }
