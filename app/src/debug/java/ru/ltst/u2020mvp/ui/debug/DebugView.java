@@ -230,7 +230,7 @@ public final class DebugView extends FrameLayout {
 
     public DebugView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        U2020App.get(context).component().inject(this);
+        U2020App.Companion.get(context).component().inject(this);
 
         // Inflate all of the controls and inject them.
         LayoutInflater.from(context).inflate(R.layout.debug_view_content, this);
