@@ -6,7 +6,7 @@ import ru.ltst.u2020mvp.util.Preconditions
 
 import ru.ltst.u2020mvp.util.Preconditions.checkNotNull
 
-
+//TODO(eg): move it to data class
 class Repository private constructor(builder: Repository.Builder) {
     val name: String
     val owner: User

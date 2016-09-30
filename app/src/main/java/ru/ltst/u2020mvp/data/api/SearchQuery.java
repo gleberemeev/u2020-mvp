@@ -7,6 +7,7 @@ import ru.ltst.u2020mvp.util.Preconditions;
 import static org.threeten.bp.format.DateTimeFormatter.ISO_LOCAL_DATE;
 import static ru.ltst.u2020mvp.util.Preconditions.checkNotNull;
 
+//we left this class in Java because toString() in Kotlin cannot return null
 public final class SearchQuery {
   private final LocalDate createdSince;
 

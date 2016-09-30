@@ -61,9 +61,9 @@ public final class MockGithubService implements GithubService {
                                                                  Sort sort, Order order) {
         RepositoriesResponse response = getResponse(MockRepositoriesResponse.class).response;
 
-        if (response.items != null) {
+        if (response.getItems() != null) {
             // Don't modify the original list when sorting.
-            ArrayList<Repository> items = new ArrayList<>(response.items);
+            ArrayList<Repository> items = new ArrayList<>(response.getItems());
             SortUtil.sort(items, sort, order);
             response = new RepositoriesResponse(items);
         }

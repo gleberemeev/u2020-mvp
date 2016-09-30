@@ -1,7 +1,7 @@
 package ru.ltst.u2020mvp.util
 
 object Strings {
-
+    val EMPTY = ""
     val DOT = "."
     val COLON = ":"
 

@@ -68,10 +68,10 @@ constructor(private val githubService: GithubService,
         val result = timespanSubject.flatMap(trendingSearch)
                 .observeOn(AndroidSchedulers.mainThread())
                 .share()
-        subscriptions.add(result.filter(Results.isSuccessful())
+        subscriptions.add(result.filter(Results.isSuccessful)
                 .map(SearchResultToRepositoryList.instance())
                 .subscribe(trendingAdapter))
-        subscriptions.add(result.filter(Funcs.not(Results.isSuccessful()))
+        subscriptions.add(result.filter(Funcs.not(Results.isSuccessful))
                 .subscribe(trendingError))
 
         // Load the default selection.
