@@ -5,7 +5,7 @@ object Strings {
     val DOT = "."
     val COLON = ":"
 
-    fun CharSequence?.isBlank(): Boolean {
+    public fun CharSequence?.isBlank(): Boolean {
         return isNullOrBlank()
     }
 

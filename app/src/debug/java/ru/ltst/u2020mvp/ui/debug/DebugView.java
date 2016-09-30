@@ -604,7 +604,7 @@ public final class DebugView extends FrameLayout {
                 })
                 .setPositiveButton("Use", (dialog, i) -> {
                     String in = hostView.getText().toString();
-                    InetSocketAddress address = InetSocketAddressPreferenceAdapter.parse(in);
+                    InetSocketAddress address = InetSocketAddressPreferenceAdapter.Companion.parse(in);
                     if (address != null) {
                         networkProxyAddress.set(address);
                         // Force a restart to re-initialize the app with the new proxy.

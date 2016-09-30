@@ -82,10 +82,10 @@ final class LogAdapter extends BindableAdapter<Entry> implements Action1<Entry> 
         }
 
         public void setEntry(Entry entry) {
-            rootView.setBackgroundResource(backgroundForLevel(entry.level));
+            rootView.setBackgroundResource(backgroundForLevel(entry.getLevel()));
             levelView.setText(entry.displayLevel());
-            tagView.setText(entry.tag);
-            messageView.setText(entry.message);
+            tagView.setText(entry.getTag());
+            messageView.setText(entry.getMessage());
         }
     }
 
