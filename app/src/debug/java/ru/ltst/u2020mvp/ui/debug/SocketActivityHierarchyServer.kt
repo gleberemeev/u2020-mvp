@@ -93,7 +93,7 @@ class SocketActivityHierarchyServer : Runnable, ActivityHierarchyServer {
         return true
     }
 
-    override fun onActivityCreated(activity: Activity, bundle: Bundle) {
+    override fun onActivityCreated(activity: Activity, bundle: Bundle?) {
         var name = activity.title.toString()
         if (TextUtils.isEmpty(name)) {
             name = activity.javaClass.canonicalName +
