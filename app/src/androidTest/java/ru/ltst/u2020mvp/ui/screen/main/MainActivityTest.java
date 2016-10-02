@@ -61,7 +61,7 @@ public class MainActivityTest extends BaseTest {
         //check content displayed
         onView(withId(R.id.trending_swipe_refresh))
                 .check(matches(isCompletelyDisplayed()));
-        onView(RecyclerViewMatcher.withRecyclerView(R.id.trending_list).atPosition(0))
+        onView(RecyclerViewMatcher.Companion.withRecyclerView(R.id.trending_list).atPosition(0))
                 .check(matches(isCompletelyDisplayed()));
 
         //check swipe working
