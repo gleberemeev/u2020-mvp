@@ -21,7 +21,7 @@ class MockGithubService
 @Inject
 internal constructor(mockRetrofit: MockRetrofit, private val preferences: SharedPreferences) : GithubService {
     private val delegate: BehaviorDelegate<GithubService>
-    private val responses = LinkedHashMap<Class<out Enum<*>>, Enum<*>>()
+    private val responses = LinkedHashMap<Class<out Enum<*>>, Enum<*>?>()
 
     init {
         this.delegate = mockRetrofit.create(GithubService::class.java)
@@ -34,7 +34,7 @@ internal constructor(mockRetrofit: MockRetrofit, private val preferences: Shared
      * Initializes the current response for `responseClass` from `SharedPreferences`, or
      * uses `defaultValue` if a response was not found.
      */
-    private fun <T : Enum<T>> loadResponse(responseClass: Class<T>, defaultValue: T) {
+    private fun <T : Enum<T>> loadResponse(responseClass: Class<T>, defaultValue: T?) {
         responses.put(responseClass, EnumPreferences.getEnumValue(preferences, responseClass, //
                 responseClass.canonicalName, defaultValue))
     }

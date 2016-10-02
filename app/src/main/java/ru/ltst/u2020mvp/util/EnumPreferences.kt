@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 object EnumPreferences {
 
     fun <T : Enum<T>> getEnumValue(preferences: SharedPreferences, type: Class<T>,
-                                   key: String, defaultValue: T): T {
+                                   key: String, defaultValue: T?): T? {
         val name = preferences.getString(key, null)
         if (name != null) {
             try {
