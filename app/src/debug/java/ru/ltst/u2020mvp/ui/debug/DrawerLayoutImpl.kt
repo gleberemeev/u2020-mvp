@@ -15,12 +15,12 @@
  */
 
 
-package ru.ltst.u2020mvp.ui.debug;
+package ru.ltst.u2020mvp.ui.debug
 
 /**
  * Interface used to communicate from the v21-specific code for configuring a DrawerLayout
  * to the DrawerLayout itself.
  */
-interface DrawerLayoutImpl {
-  void setChildInsets(Object insets, boolean drawStatusBar);
+internal interface DrawerLayoutImpl {
+    fun setChildInsets(insets: Any, drawStatusBar: Boolean)
 }

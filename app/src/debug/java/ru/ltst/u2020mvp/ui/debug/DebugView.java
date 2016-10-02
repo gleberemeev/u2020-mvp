@@ -41,7 +41,6 @@ import javax.inject.Named;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import kotlin.reflect.KClass;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import retrofit2.mock.NetworkBehavior;
@@ -236,7 +235,7 @@ public final class DebugView extends FrameLayout {
         LayoutInflater.from(context).inflate(R.layout.debug_view_content, this);
         ButterKnife.bind(this);
 
-        Set<ContextualDebugActions.DebugAction<?>> debugActions = Collections.emptySet();
+        Set<ContextualDebugActions.DebugAction<? super View>> debugActions = Collections.emptySet();
         contextualDebugActions = new ContextualDebugActions(this, debugActions);
 
         setupNetworkSection();
@@ -277,7 +276,7 @@ public final class DebugView extends FrameLayout {
 
         final NetworkDelayAdapter delayAdapter = new NetworkDelayAdapter(getContext());
         networkDelayView.setAdapter(delayAdapter);
-        networkDelayView.setSelection(NetworkDelayAdapter.getPositionForValue(behavior.delay(MILLISECONDS)));
+        networkDelayView.setSelection(NetworkDelayAdapter.Companion.getPositionForValue(behavior.delay(MILLISECONDS)));
         RxAdapterView.itemSelections(networkDelayView)
                 .map(delayAdapter::getItem)
                 .filter(item -> item != behavior.delay(MILLISECONDS))
@@ -289,7 +288,7 @@ public final class DebugView extends FrameLayout {
 
         final NetworkVarianceAdapter varianceAdapter = new NetworkVarianceAdapter(getContext());
         networkVarianceView.setAdapter(varianceAdapter);
-        networkVarianceView.setSelection(NetworkVarianceAdapter.getPositionForValue(behavior.variancePercent()));
+        networkVarianceView.setSelection(NetworkVarianceAdapter.Companion.getPositionForValue(behavior.variancePercent()));
 
         RxAdapterView.itemSelections(networkVarianceView)
                 .map(varianceAdapter::getItem)
@@ -302,7 +301,7 @@ public final class DebugView extends FrameLayout {
 
         final NetworkErrorAdapter errorAdapter = new NetworkErrorAdapter(getContext());
         networkErrorView.setAdapter(errorAdapter);
-        networkErrorView.setSelection(NetworkErrorAdapter.getPositionForValue(behavior.failurePercent()));
+        networkErrorView.setSelection(NetworkErrorAdapter.Companion.getPositionForValue(behavior.failurePercent()));
         RxAdapterView.itemSelections(networkErrorView)
                 .map(errorAdapter::getItem)
                 .filter(item -> item != behavior.failurePercent())
@@ -312,24 +311,24 @@ public final class DebugView extends FrameLayout {
                     networkFailurePercent.set(selected);
                 });
 
-        int currentProxyPosition = networkProxyAddress.isSet() ? ProxyAdapter.PROXY : ProxyAdapter.NONE;
+        int currentProxyPosition = networkProxyAddress.isSet() ? ProxyAdapter.Companion.getPROXY() : ProxyAdapter.Companion.getNONE();
         final ProxyAdapter proxyAdapter = new ProxyAdapter(getContext(), networkProxyAddress);
         networkProxyView.setAdapter(proxyAdapter);
         networkProxyView.setSelection(currentProxyPosition);
 
         RxAdapterView.itemSelections(networkProxyView)
-                .filter(position -> !networkProxyAddress.isSet() || position != ProxyAdapter.PROXY)
+                .filter(position -> !networkProxyAddress.isSet() || position != ProxyAdapter.Companion.getPROXY())
                 .subscribe(position -> {
-                    if (position == ProxyAdapter.NONE) {
+                    if (position == ProxyAdapter.Companion.getNONE()) {
                         // Only clear the proxy and restart if one was previously set.
-                        if (currentProxyPosition != ProxyAdapter.NONE) {
+                        if (currentProxyPosition != ProxyAdapter.Companion.getNONE()) {
                             Timber.d("Clearing network proxy");
                             // TODO: Keep the custom proxy around so you can easily switch back and forth.
                             networkProxyAddress.delete();
                             // Force a restart to re-initialize the app without a proxy.
                             ProcessPhoenix.triggerRebirth(getContext());
                         }
-                    } else if (networkProxyAddress.isSet() && position == ProxyAdapter.PROXY) {
+                    } else if (networkProxyAddress.isSet() && position == ProxyAdapter.Companion.getPROXY()) {
                         Timber.d("Ignoring re-selection of network proxy %s", networkProxyAddress.get());
                     } else {
                         Timber.d("New network proxy selected. Prompting for host.");
@@ -418,7 +417,7 @@ public final class DebugView extends FrameLayout {
         final AnimationSpeedAdapter speedAdapter = new AnimationSpeedAdapter(getContext());
         uiAnimationSpeedView.setAdapter(speedAdapter);
         final int animationSpeedValue = animationSpeed.get();
-        uiAnimationSpeedView.setSelection(AnimationSpeedAdapter.getPositionForValue(animationSpeedValue));
+        uiAnimationSpeedView.setSelection(AnimationSpeedAdapter.Companion.getPositionForValue(animationSpeedValue));
 
         RxAdapterView.itemSelections(uiAnimationSpeedView)
                 .map(speedAdapter::getItem)
@@ -581,7 +580,7 @@ public final class DebugView extends FrameLayout {
     }
 
     private void showNewNetworkProxyDialog(final ProxyAdapter proxyAdapter) {
-        final int originalSelection = networkProxyAddress.isSet() ? ProxyAdapter.PROXY : ProxyAdapter.NONE;
+        final int originalSelection = networkProxyAddress.isSet() ? ProxyAdapter.Companion.getPROXY() : ProxyAdapter.Companion.getNONE();
 
         View view = LayoutInflater.from(app).inflate(R.layout.debug_drawer_network_proxy, null);
         final EditText hostView = findById(view, R.id.debug_drawer_network_proxy_host);
