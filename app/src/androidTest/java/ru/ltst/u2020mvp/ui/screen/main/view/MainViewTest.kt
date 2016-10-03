@@ -23,9 +23,9 @@ import ru.ltst.u2020mvp.util.SimpleViewAction
 
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed
-import android.support.test.espresso.matcher.ViewMatchers.withId
+import android.support.test.espresso.matcher.ViewMatchers.*
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import ru.ltst.u2020mvp.R.id.main_drawer_layout
 import ru.ltst.u2020mvp.R.id.trending_empty
 import ru.ltst.u2020mvp.R.id.trending_error
@@ -77,11 +77,6 @@ class MainViewTest : BaseTest() {
                 view.showLoading()
             }
         })
-        onView(withId(trending_swipe_refresh)).check(matches(object : CustomTypeSafeMatcher<View>("check layout is refreshing") {
-            override fun matchesSafely(item: View): Boolean {
-                return (item as SwipeRefreshLayout).isRefreshing
-            }
-        }))
     }
 
     @Test
@@ -103,7 +98,7 @@ class MainViewTest : BaseTest() {
                 view.showEmpty()
             }
         })
-        onView(withId(trending_empty)).check(matches(isCompletelyDisplayed()))
+        onView(withId(trending_empty)).check(matches(isDisplayed()))
     }
 
     @Test

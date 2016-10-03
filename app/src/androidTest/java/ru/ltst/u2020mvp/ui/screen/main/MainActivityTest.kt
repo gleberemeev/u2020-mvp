@@ -39,9 +39,9 @@ import org.hamcrest.CoreMatchers.not
 class MainActivityTest : BaseTest() {
     lateinit var networkDelay: Preference<Long>
 
-    @Rule
+    @get:Rule
     var activityTestRule = ActivityTestRule(MainActivity::class.java)
-    @Rule
+    @get:Rule
     var timerTestRule = TimerTestRule()
 
     @Before
