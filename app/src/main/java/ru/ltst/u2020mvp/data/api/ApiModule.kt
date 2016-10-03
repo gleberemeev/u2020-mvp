@@ -41,7 +41,7 @@ class ApiModule {
 
     @Provides
     @ApplicationScope
-    internal fun provideRetrofit(baseUrl: HttpUrl, @Named("Api") client: OkHttpClient, moshi: Moshi): Retrofit {
+    fun provideRetrofit(baseUrl: HttpUrl, @Named("Api") client: OkHttpClient, moshi: Moshi): Retrofit {
         return Retrofit.Builder().client(client).baseUrl(baseUrl).addConverterFactory(MoshiConverterFactory.create(moshi)).addCallAdapterFactory(RxJavaCallAdapterFactory.create()).build()
     }
 

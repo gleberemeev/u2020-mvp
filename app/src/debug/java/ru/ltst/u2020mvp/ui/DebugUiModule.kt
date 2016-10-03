@@ -14,13 +14,13 @@ import ru.ltst.u2020mvp.ui.debug.SocketActivityHierarchyServer
 class DebugUiModule {
     @Provides
     @ApplicationScope
-    internal fun provideAppContainer(appContainer: DebugViewContainer): ViewContainer {
+    fun provideAppContainer(appContainer: DebugViewContainer): ViewContainer {
         return appContainer
     }
 
     @Provides
     @ApplicationScope
-    internal fun provideActivityHierarchyServer(@ActivityScreenSwitcherServer server: ActivityHierarchyServer): ActivityHierarchyServer {
+    fun provideActivityHierarchyServer(@ActivityScreenSwitcherServer server: ActivityHierarchyServer): ActivityHierarchyServer {
         val proxy = ActivityHierarchyServer.Proxy()
         proxy.addServer(server)
         proxy.addServer(Registry.SERVER)

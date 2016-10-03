@@ -10,7 +10,7 @@ class U2020AppModule(private val app: U2020App) {
 
     @Provides
     @ApplicationScope
-    internal fun provideApplication(): Application {
+    fun provideApplication(): Application {
         return app
     }
 }

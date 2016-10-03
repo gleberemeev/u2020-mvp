@@ -11,5 +11,5 @@ abstract class BaseTest {
         get() = InstrumentationRegistry.getTargetContext().applicationContext as TestU2020Application
 
     protected val testComponent: TestU2020Component
-        get() = app.testComponent
+        get() = app.component() as TestU2020Component
 }

@@ -5,7 +5,7 @@ import ru.ltst.u2020mvp.data.DebugDataModule
 import ru.ltst.u2020mvp.ui.DebugUiModule
 
 /**
- * The core debug component for u2020 applications
+ * The core debug getComponent for u2020 applications
  */
 @ApplicationScope
 @Component(modules = arrayOf(U2020AppModule::class, DebugUiModule::class, DebugDataModule::class, DebugU2020Module::class, DebugActionsModule::class))

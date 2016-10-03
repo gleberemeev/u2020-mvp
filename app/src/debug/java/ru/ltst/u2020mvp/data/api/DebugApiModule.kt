@@ -21,13 +21,13 @@ import javax.inject.Named
 class DebugApiModule {
     @Provides
     @ApplicationScope
-    internal fun provideHttpUrl(@ApiEndpoint apiEndpoint: Preference<String>): HttpUrl {
+    fun provideHttpUrl(@ApiEndpoint apiEndpoint: Preference<String>): HttpUrl {
         return HttpUrl.parse(apiEndpoint.get()!!)
     }
 
     @Provides
     @ApplicationScope
-    internal fun provideLoggingInterceptor(): HttpLoggingInterceptor {
+    fun provideLoggingInterceptor(): HttpLoggingInterceptor {
         val loggingInterceptor = HttpLoggingInterceptor { message -> Timber.tag("OkHttp").v(message) }
         loggingInterceptor.level = HttpLoggingInterceptor.Level.HEADERS
         return loggingInterceptor
@@ -36,7 +36,7 @@ class DebugApiModule {
     @Provides
     @ApplicationScope
     @Named("Api")
-    internal fun provideApiClient(client: OkHttpClient,
+    fun provideApiClient(client: OkHttpClient,
                                   oauthInterceptor: OauthInterceptor,
                                   loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return ApiModule.createApiClient(client, oauthInterceptor).addInterceptor(loggingInterceptor).build()
@@ -44,7 +44,7 @@ class DebugApiModule {
 
     @Provides
     @ApplicationScope
-    internal fun provideBehavior(@NetworkDelay networkDelay: Preference<Long>,
+    fun provideBehavior(@NetworkDelay networkDelay: Preference<Long>,
                                  @NetworkFailurePercent networkFailurePercent: Preference<Int>,
                                  @NetworkVariancePercent networkVariancePercent: Preference<Int>): NetworkBehavior {
         val behavior = NetworkBehavior.create()
@@ -56,14 +56,14 @@ class DebugApiModule {
 
     @Provides
     @ApplicationScope
-    internal fun provideMockRetrofit(retrofit: Retrofit,
+    fun provideMockRetrofit(retrofit: Retrofit,
                                      behavior: NetworkBehavior): MockRetrofit {
         return MockRetrofit.Builder(retrofit).networkBehavior(behavior).build()
     }
 
     @Provides
     @ApplicationScope
-    internal fun provideGithubService(retrofit: Retrofit,
+    fun provideGithubService(retrofit: Retrofit,
                                       @IsMockMode isMockMode: Boolean, mockService: MockGithubService): GithubService {
         return if (isMockMode) mockService else retrofit.create(GithubService::class.java)
     }

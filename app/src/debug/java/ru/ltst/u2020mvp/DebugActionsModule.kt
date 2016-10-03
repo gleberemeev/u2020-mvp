@@ -12,7 +12,7 @@ import dagger.Provides.Type.SET_VALUES
 @Module
 class DebugActionsModule {
     @Provides(type = SET_VALUES)
-    internal fun provideDebugActions(): Set<ContextualDebugActions.DebugAction<*>> {
+    fun provideDebugActions(): Set<ContextualDebugActions.DebugAction<*>> {
         val actions = LinkedHashSet<ContextualDebugActions.DebugAction<*>>()
         return actions
     }

@@ -2,17 +2,16 @@ package ru.ltst.u2020mvp
 
 
 class TestU2020Application : U2020App() {
-    lateinit var testComponent: TestU2020Component
-        private set
+    lateinit override var component: U2020Component
 
     override fun buildComponentAndInject() {
-        testComponent = DaggerTestU2020Component.builder()
+        component = DaggerTestU2020Component.builder()
                 .u2020AppModule(U2020AppModule(this))
                 .build()
-        testComponent.inject(this)
+        component.inject(this)
     }
 
     override fun component(): U2020Component {
-        return testComponent
+        return component
     }
 }

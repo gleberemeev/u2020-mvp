@@ -5,16 +5,11 @@ import android.os.Bundle
 import android.support.annotation.IdRes
 import android.support.annotation.LayoutRes
 import android.support.v7.app.AppCompatActivity
-import android.view.LayoutInflater
-import android.view.ViewGroup
-
-import java.util.UUID
-
-import javax.inject.Inject
-
 import ru.ltst.u2020mvp.U2020App
 import ru.ltst.u2020mvp.U2020Component
 import ru.ltst.u2020mvp.network.NetworkReceiver
+import java.util.*
+import javax.inject.Inject
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -87,9 +82,9 @@ abstract class BaseActivity : AppCompatActivity() {
     /**
      * Must be implemented by derived activities. Injection must be performed here.
      * Otherwise IllegalStateException will be thrown. Derived activity is
-     * responsible to create and store it's component.
+     * responsible to create and store it's getComponent.
 
-     * @param u2020Component application level component
+     * @param u2020Component application level getComponent
      */
     protected abstract fun onCreateComponent(u2020Component: U2020Component)
 

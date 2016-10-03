@@ -21,13 +21,13 @@ class DataModule {
 
     @Provides
     @ApplicationScope
-    internal fun provideSharedPreferences(app: Application): SharedPreferences {
+    fun provideSharedPreferences(app: Application): SharedPreferences {
         return app.getSharedPreferences("u2020", MODE_PRIVATE)
     }
 
     @Provides
     @ApplicationScope
-    internal fun provideClock(): Clock {
+    fun provideClock(): Clock {
         return Clock.REAL
     }
 
@@ -39,20 +39,20 @@ class DataModule {
 
     @Provides
     @ApplicationScope
-    internal fun provideRxSharedPreferences(prefs: SharedPreferences): RxSharedPreferences {
+    fun provideRxSharedPreferences(prefs: SharedPreferences): RxSharedPreferences {
         return RxSharedPreferences.create(prefs)
     }
 
     @Provides
     @ApplicationScope
     @AccessToken
-    internal fun provideAccessToken(prefs: RxSharedPreferences): Preference<String> {
+    fun provideAccessToken(prefs: RxSharedPreferences): Preference<String> {
         return prefs.getString("access-token")
     }
 
     @Provides
     @ApplicationScope
-    internal fun provideMoshi(): Moshi {
+    fun provideMoshi(): Moshi {
         return Moshi.Builder().add(InstantAdapter()).build()
     }
 

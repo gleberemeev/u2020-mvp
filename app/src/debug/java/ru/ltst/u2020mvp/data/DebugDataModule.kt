@@ -27,14 +27,14 @@ class DebugDataModule {
 
     @Provides
     @ApplicationScope
-    internal fun provideIntentFactory(@IsMockMode isMockMode: Boolean,
+    fun provideIntentFactory(@IsMockMode isMockMode: Boolean,
                                       @CaptureIntents captureIntents: Preference<Boolean>): IntentFactory {
         return DebugIntentFactory(IntentFactory.REAL, isMockMode, captureIntents)
     }
 
     @Provides
     @ApplicationScope
-    internal fun provideOkHttpClient(app: Application,
+    fun provideOkHttpClient(app: Application,
                                      networkProxyAddress: Preference<InetSocketAddress>): OkHttpClient {
         return DataModule.createOkHttpClient(app).sslSocketFactory(createBadSslSocketFactory()).proxy(InetSocketAddressPreferenceAdapter.createProxy(networkProxyAddress.get())).build()
     }
@@ -42,14 +42,14 @@ class DebugDataModule {
     @Provides
     @ApplicationScope
     @ApiEndpoint
-    internal fun provideEndpointPreference(prefs: RxSharedPreferences): Preference<String> {
+    fun provideEndpointPreference(prefs: RxSharedPreferences): Preference<String> {
         return prefs.getString("debug_endpoint", ApiEndpoints.MOCK_MODE.url)
     }
 
     @Provides
     @ApplicationScope
     @IsMockMode
-    internal fun provideIsMockMode(@ApiEndpoint endpoint: Preference<String>,
+    fun provideIsMockMode(@ApiEndpoint endpoint: Preference<String>,
                                    @IsInstrumentationTest isInstrumentationTest: Boolean): Boolean {
         // Running in an instrumentation forces mock mode.
         return isInstrumentationTest || ApiEndpoints.isMockMode(endpoint.get()!!)
@@ -58,89 +58,89 @@ class DebugDataModule {
     @Provides
     @ApplicationScope
     @NetworkDelay
-    internal fun provideNetworkDelay(prefs: RxSharedPreferences): Preference<Long> {
+    fun provideNetworkDelay(prefs: RxSharedPreferences): Preference<Long> {
         return prefs.getLong("debug_network_delay", 2000L)
     }
 
     @Provides
     @ApplicationScope
     @NetworkFailurePercent
-    internal fun provideNetworkFailurePercent(prefs: RxSharedPreferences): Preference<Int> {
+    fun provideNetworkFailurePercent(prefs: RxSharedPreferences): Preference<Int> {
         return prefs.getInteger("debug_network_failure_percent", 3)
     }
 
     @Provides
     @ApplicationScope
     @NetworkVariancePercent
-    internal fun provideNetworkVariancePercent(prefs: RxSharedPreferences): Preference<Int> {
+    fun provideNetworkVariancePercent(prefs: RxSharedPreferences): Preference<Int> {
         return prefs.getInteger("debug_network_variance_percent", 40)
     }
 
     @Provides
     @ApplicationScope
-    internal fun provideNetworkProxyAddress(preferences: RxSharedPreferences): Preference<InetSocketAddress> {
+    fun provideNetworkProxyAddress(preferences: RxSharedPreferences): Preference<InetSocketAddress> {
         return preferences.getObject("debug_network_proxy", InetSocketAddressPreferenceAdapter.INSTANCE)
     }
 
     @Provides
     @ApplicationScope
     @CaptureIntents
-    internal fun provideCaptureIntentsPreference(prefs: RxSharedPreferences): Preference<Boolean> {
+    fun provideCaptureIntentsPreference(prefs: RxSharedPreferences): Preference<Boolean> {
         return prefs.getBoolean("debug_capture_intents", DEFAULT_CAPTURE_INTENTS)
     }
 
     @Provides
     @ApplicationScope
     @AnimationSpeed
-    internal fun provideAnimationSpeed(prefs: RxSharedPreferences): Preference<Int> {
+    fun provideAnimationSpeed(prefs: RxSharedPreferences): Preference<Int> {
         return prefs.getInteger("debug_animation_speed", DEFAULT_ANIMATION_SPEED)
     }
 
     @Provides
     @ApplicationScope
     @PicassoDebugging
-    internal fun providePicassoDebugging(prefs: RxSharedPreferences): Preference<Boolean> {
+    fun providePicassoDebugging(prefs: RxSharedPreferences): Preference<Boolean> {
         return prefs.getBoolean("debug_picasso_debugging", DEFAULT_PICASSO_DEBUGGING)
     }
 
     @Provides
     @ApplicationScope
     @PixelGridEnabled
-    internal fun providePixelGridEnabled(prefs: RxSharedPreferences): Preference<Boolean> {
+    fun providePixelGridEnabled(prefs: RxSharedPreferences): Preference<Boolean> {
         return prefs.getBoolean("debug_pixel_grid_enabled", DEFAULT_PIXEL_GRID_ENABLED)
     }
 
     @Provides
     @ApplicationScope
     @PixelRatioEnabled
-    internal fun providePixelRatioEnabled(prefs: RxSharedPreferences): Preference<Boolean> {
+    fun providePixelRatioEnabled(prefs: RxSharedPreferences): Preference<Boolean> {
         return prefs.getBoolean("debug_pixel_ratio_enabled", DEFAULT_PIXEL_RATIO_ENABLED)
     }
 
     @Provides
     @ApplicationScope
     @SeenDebugDrawer
-    internal fun provideSeenDebugDrawer(prefs: RxSharedPreferences): Preference<Boolean> {
+    fun provideSeenDebugDrawer(prefs: RxSharedPreferences): Preference<Boolean> {
         return prefs.getBoolean("debug_seen_debug_drawer", DEFAULT_SEEN_DEBUG_DRAWER)
     }
 
     @Provides
     @ApplicationScope
     @ScalpelEnabled
-    internal fun provideScalpelEnabled(prefs: RxSharedPreferences): Preference<Boolean> {
+    fun provideScalpelEnabled(prefs: RxSharedPreferences): Preference<Boolean> {
         return prefs.getBoolean("debug_scalpel_enabled", DEFAULT_SCALPEL_ENABLED)
     }
 
     @Provides
     @ApplicationScope
     @ScalpelWireframeEnabled
-    internal fun provideScalpelWireframeEnabled(prefs: RxSharedPreferences): Preference<Boolean> {
+    fun provideScalpelWireframeEnabled(prefs: RxSharedPreferences): Preference<Boolean> {
         return prefs.getBoolean("debug_scalpel_wireframe_drawer", DEFAULT_SCALPEL_WIREFRAME_ENABLED)
     }
 
     @Provides
     @ApplicationScope
-    internal fun providePicasso(client: OkHttpClient, behavior: NetworkBehavior,
+    fun providePicasso(client: OkHttpClient, behavior: NetworkBehavior,
                                 @IsMockMode isMockMode: Boolean, app: Application): Picasso {
         val builder = Picasso.Builder(app).downloader(OkHttp3Downloader(client))
         if (isMockMode) {

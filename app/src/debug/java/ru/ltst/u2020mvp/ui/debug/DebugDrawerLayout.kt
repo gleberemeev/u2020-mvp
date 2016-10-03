@@ -501,7 +501,7 @@ class DebugDrawerLayout @JvmOverloads constructor(context: Context,
     }
 
     /**
-     * Resolve the shared state of all drawers from the component ViewDragHelpers.
+     * Resolve the shared state of all drawers from the getComponent ViewDragHelpers.
      * Should be called whenever a ViewDragHelper's state changes.
      */
     internal fun updateDrawerState(forGravity: Int, @State activeState: Int, activeDrawer: View?) {

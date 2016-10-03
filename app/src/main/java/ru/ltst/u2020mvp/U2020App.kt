@@ -15,7 +15,7 @@ import timber.log.Timber
 import timber.log.Timber.DebugTree
 
 open class U2020App : Application() {
-    lateinit private var component: U2020Component
+    open lateinit protected var component: U2020Component
 
     @Inject
     lateinit var activityHierarchyServer: ActivityHierarchyServer

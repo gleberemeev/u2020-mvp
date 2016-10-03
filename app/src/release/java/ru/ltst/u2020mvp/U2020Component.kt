@@ -5,7 +5,7 @@ import ru.ltst.u2020mvp.data.ReleaseDataModule
 import ru.ltst.u2020mvp.ui.ReleaseUiModule
 
 /**
- * The core release component for u2020 applications
+ * The core release getComponent for u2020 applications
  */
 @ApplicationScope
 @Component(modules = arrayOf(U2020AppModule::class, ReleaseUiModule::class, ReleaseDataModule::class))

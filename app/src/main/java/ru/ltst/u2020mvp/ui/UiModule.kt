@@ -13,14 +13,14 @@ import ru.ltst.u2020mvp.base.mvp.annotation.ActivityScreenSwitcherServer
 class UiModule {
     @Provides
     @ApplicationScope
-    internal fun provideActivityScreenSwitcher(): ActivityScreenSwitcher {
+    fun provideActivityScreenSwitcher(): ActivityScreenSwitcher {
         return ActivityScreenSwitcher()
     }
 
     @Provides
     @ApplicationScope
     @ActivityScreenSwitcherServer
-    internal fun provideActivityScreenSwitcherServer(screenSwitcher: ActivityScreenSwitcher): ActivityHierarchyServer {
+    fun provideActivityScreenSwitcherServer(screenSwitcher: ActivityScreenSwitcher): ActivityHierarchyServer {
         return object : ActivityHierarchyServer.Empty() {
             override fun onActivityStarted(activity: Activity) {
                 screenSwitcher.attach(activity)
