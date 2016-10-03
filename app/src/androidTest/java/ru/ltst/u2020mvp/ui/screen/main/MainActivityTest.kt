@@ -21,19 +21,19 @@ import ru.ltst.u2020mvp.util.RecyclerViewMatcher
 import ru.ltst.u2020mvp.util.TimerTestRule
 
 import android.support.test.espresso.Espresso.onView
+import android.support.test.espresso.UiController
+import android.support.test.espresso.ViewAction
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.action.ViewActions.swipeDown
 import android.support.test.espresso.action.ViewActions.swipeUp
 import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed
-import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
-import android.support.test.espresso.matcher.ViewMatchers.withId
-import android.support.test.espresso.matcher.ViewMatchers.withParent
-import android.support.test.espresso.matcher.ViewMatchers.withText
+import android.support.test.espresso.matcher.ViewMatchers.*
 import android.view.View
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.CoreMatchers.instanceOf
 import org.hamcrest.CoreMatchers.not
+import org.hamcrest.Matcher
+import ru.ltst.u2020mvp.util.ViewActions
 
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest : BaseTest() {
@@ -54,7 +54,7 @@ class MainActivityTest : BaseTest() {
     fun swipeTest() {
         //check loading displayed
         onView(withId(R.id.trending_loading)).check(matches(isCompletelyDisplayed()))
-        timerTestRule.scheduleTimeout(1000)
+        timerTestRule.scheduleTimeout(2000)
 
         //check content displayed
         onView(withId(R.id.trending_swipe_refresh)).check(matches(isCompletelyDisplayed()))
@@ -76,7 +76,7 @@ class MainActivityTest : BaseTest() {
     fun swipeToRefreshTest() {
         timerTestRule.scheduleTimeout(1000)
         onView(withId(R.id.trending_swipe_refresh))
-                .perform(swipeDown())
+                .perform(ViewActions.withCustomConstraints(swipeDown(), isDisplayingAtLeast(80)))
                 .check { view, noViewFoundException -> (view as SwipeRefreshLayout).isRefreshing }
     }
 
