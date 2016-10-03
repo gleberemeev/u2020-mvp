@@ -1,12 +1,16 @@
 package ru.ltst.u2020mvp.ui.screen.main;
 
+import android.support.test.espresso.UiController;
+import android.support.test.espresso.ViewAction;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.f2prateek.rx.preferences.Preference;
 
+import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -27,6 +31,7 @@ import static android.support.test.espresso.action.ViewActions.swipeUp;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayingAtLeast;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -56,12 +61,13 @@ public class MainActivityTest extends BaseTest {
         //check loading displayed
         onView(withId(R.id.trending_loading))
                 .check(matches(isCompletelyDisplayed()));
-        timerTestRule.scheduleTimeout(1000);
+        timerTestRule.scheduleTimeout(2000);
 
         //check content displayed
         onView(withId(R.id.trending_swipe_refresh))
                 .check(matches(isCompletelyDisplayed()));
-        onView(RecyclerViewMatcher.withRecyclerView(R.id.trending_list).atPosition(0))
+        onView(RecyclerViewMatcher.withRecyclerView(R.id.trending_list)
+                .atPosition(0))
                 .check(matches(isCompletelyDisplayed()));
 
         //check swipe working
@@ -84,7 +90,7 @@ public class MainActivityTest extends BaseTest {
     public void swipeToRefreshTest() {
         timerTestRule.scheduleTimeout(1000);
         onView(withId(R.id.trending_swipe_refresh))
-                .perform(swipeDown())
+                .perform(withCustomConstraints(swipeDown(), isDisplayingAtLeast(85)))
                 .check((view, noViewFoundException) -> ((SwipeRefreshLayout) view).isRefreshing());
     }
 
@@ -107,5 +113,24 @@ public class MainActivityTest extends BaseTest {
                 .perform(click());
         onView(withId(R.id.main_navigation))
                 .check(matches(not(isDisplayed())));
+    }
+
+    public static ViewAction withCustomConstraints(final ViewAction action, final Matcher<View> constraints) {
+        return new ViewAction() {
+            @Override
+            public Matcher<View> getConstraints() {
+                return constraints;
+            }
+
+            @Override
+            public String getDescription() {
+                return action.getDescription();
+            }
+
+            @Override
+            public void perform(UiController uiController, View view) {
+                action.perform(uiController, view);
+            }
+        };
     }
 }

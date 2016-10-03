@@ -85,13 +85,6 @@ public class MainViewTest extends BaseTest {
                         view.showLoading();
                     }
                 });
-        onView(withId(trending_swipe_refresh))
-                .check(matches(new CustomTypeSafeMatcher<View>("check layout is refreshing") {
-                    @Override
-                    protected boolean matchesSafely(View item) {
-                        return ((SwipeRefreshLayout) item).isRefreshing();
-                    }
-                }));
     }
 
     @Test
