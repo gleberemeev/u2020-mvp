@@ -8,8 +8,6 @@ import android.widget.TextView
 
 import ru.ltst.u2020mvp.ui.misc.BindableAdapter
 
-import butterknife.ButterKnife.findById
-
 internal class NetworkDelayAdapter(context: Context) : BindableAdapter<Long>(context) {
 
     override fun getCount(): Int {
@@ -29,7 +27,7 @@ internal class NetworkDelayAdapter(context: Context) : BindableAdapter<Long>(con
     }
 
     override fun bindView(item: Long?, position: Int, view: View) {
-        val tv = findById<TextView>(view, android.R.id.text1)
+        val tv = view.findViewById(android.R.id.text1) as TextView
         tv.text = String.format("%dms", item ?: 0)
     }
 

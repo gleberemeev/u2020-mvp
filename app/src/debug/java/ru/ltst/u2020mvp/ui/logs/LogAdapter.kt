@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import butterknife.ButterKnife
 import ru.ltst.u2020mvp.R
 import ru.ltst.u2020mvp.data.LumberYard.Entry
 import ru.ltst.u2020mvp.ui.misc.BindableAdapter
@@ -61,10 +60,6 @@ internal class LogAdapter(context: Context) : BindableAdapter<Entry>(context), A
         val levelView: TextView by bindView(R.id.debug_log_level)
         val tagView: TextView by bindView(R.id.debug_log_tag)
         val messageView: TextView by bindView(R.id.debug_log_message)
-
-        init {
-            ButterKnife.bind(this, rootView)
-        }
 
         fun setEntry(entry: Entry) {
             rootView.setBackgroundResource(backgroundForLevel(entry.level))

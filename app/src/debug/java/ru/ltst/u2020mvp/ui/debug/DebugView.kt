@@ -12,9 +12,6 @@ import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
-import butterknife.ButterKnife
-import butterknife.ButterKnife.findById
-import butterknife.OnClick
 import com.f2prateek.rx.preferences.Preference
 import com.jakewharton.rxbinding.widget.RxAdapterView
 import com.squareup.leakcanary.internal.DisplayLeakActivity
@@ -96,6 +93,10 @@ class DebugView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     val okHttpCacheNetworkCountView: TextView by bindView(R.id.debug_okhttp_cache_network_count)
     val okHttpCacheHitCountView: TextView by bindView(R.id.debug_okhttp_cache_hit_count)
 
+    val showLogs : View by bindView(R.id.debug_logs_show)
+    val showLeaks : View by bindView(R.id.debug_leaks_show)
+    val editEndpoint : View by bindView(R.id.debug_network_endpoint_edit)
+
     @Inject
     lateinit var client: OkHttpClient
     @Inject
@@ -146,7 +147,6 @@ class DebugView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
 
         // Inflate all of the controls and inject them.
         LayoutInflater.from(context).inflate(R.layout.debug_view_content, this)
-        ButterKnife.bind(this)
 
         val debugActions = emptySet<ContextualDebugActions.DebugAction<in View>>()
         contextualDebugActions = ContextualDebugActions(this, debugActions)
@@ -158,6 +158,7 @@ class DebugView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         setupDeviceSection()
         setupPicassoSection()
         setupOkHttpCacheSection()
+        setupLogsSection()
     }
 
     fun onDrawerOpened() {
@@ -165,7 +166,13 @@ class DebugView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         refreshOkHttpCacheStats()
     }
 
+    private fun setupLogsSection() {
+        showLogs.setOnClickListener { showLogs() }
+        showLeaks.setOnClickListener { showLeaks() }
+    }
+
     private fun setupNetworkSection() {
+        editEndpoint.setOnClickListener { onEditEndpointClicked() }
         val currentEndpoint = ApiEndpoints.from(networkEndpoint.get())
         val endpointAdapter = EnumAdapter(context, ApiEndpoints::class.java)
         endpointView.adapter = endpointAdapter
@@ -267,7 +274,6 @@ class DebugView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         //        });
     }
 
-    @OnClick(R.id.debug_network_endpoint_edit)
     internal fun onEditEndpointClicked() {
         Timber.d("Prompting to edit custom endpoint URL.")
         // Pass in the currently selected position since we are merely editing.
@@ -349,12 +355,10 @@ class DebugView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         }
     }
 
-    @OnClick(R.id.debug_logs_show)
     internal fun showLogs() {
         LogsDialog(ContextThemeWrapper(context, R.style.Theme_U2020), lumberYard).show()
     }
 
-    @OnClick(R.id.debug_leaks_show)
     internal fun showLeaks() {
         val intent = Intent(context, DisplayLeakActivity::class.java)
         context.startActivity(intent)
@@ -441,7 +445,7 @@ class DebugView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         val originalSelection = if (networkProxyAddress.isSet) ProxyAdapter.PROXY else ProxyAdapter.NONE
 
         val view = LayoutInflater.from(app).inflate(R.layout.debug_drawer_network_proxy, null)
-        val hostView = findById<EditText>(view, R.id.debug_drawer_network_proxy_host)
+        val hostView = view.findViewById(R.id.debug_drawer_network_proxy_host) as EditText
 
         if (networkProxyAddress.isSet) {
             val host = networkProxyAddress.get()?.hostName
@@ -471,7 +475,7 @@ class DebugView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
 
     private fun showCustomEndpointDialog(originalSelection: Int, defaultUrl: String) {
         val view = LayoutInflater.from(context).inflate(R.layout.debug_drawer_network_endpoint, null)
-        val url = findById<EditText>(view, R.id.debug_drawer_network_endpoint_url)
+        val url = view.findViewById(R.id.debug_drawer_network_endpoint_url) as EditText
         url.setText(defaultUrl)
         url.setSelection(url.length())
 

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import butterknife.ButterKnife.findById
 import ru.ltst.u2020mvp.ui.misc.BindableAdapter
 
 internal class NetworkVarianceAdapter(context: Context) : BindableAdapter<Int>(context) {
@@ -27,7 +26,7 @@ internal class NetworkVarianceAdapter(context: Context) : BindableAdapter<Int>(c
     }
 
     override fun bindView(item: Int?, position: Int, view: View) {
-        val tv = findById<TextView>(view, android.R.id.text1)
+        val tv = view.findViewById(android.R.id.text1) as TextView
         tv.text = "±$item%"
     }
 

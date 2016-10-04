@@ -140,9 +140,6 @@ dependencies {
     compile libraries.retrofit
     compile libraries.retrofitMoshi
     compile libraries.retrofitRxJava
-    //butterknife
-    compile libraries.butterknife
-    kapt libraries.butterknifeCompiler
     //timber
     compile libraries.timber
     //byteunits
